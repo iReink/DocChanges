@@ -1,0 +1,10 @@
+{
+  "description": "Искусственные договоры",
+  "expected_types": [
+    "money",
+    "dates",
+    "requisites",
+    "table"
+  ],
+  "expected_row_insertions": 1
+}

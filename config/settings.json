@@ -1,0 +1,21 @@
+{
+  "host": "0.0.0.0",
+  "web_port": 8080,
+  "comparison_port": 8000,
+  "models_port": 8001,
+  "api_url": "",
+  "models_url": "http://127.0.0.1:8001",
+  "device": "auto",
+  "cpu_threads": 4,
+  "vram_budget_mb": 2304,
+  "max_file_mb": 50,
+  "max_pages": 200,
+  "max_signatures": 10,
+  "queue_size": 8,
+  "task_timeout_seconds": 900,
+  "idle_seconds": 1800,
+  "model_timeout_seconds": 180,
+  "alignment_threshold": 0.62,
+  "alignment_margin": 0.08,
+  "entity_threshold": 0.6
+}

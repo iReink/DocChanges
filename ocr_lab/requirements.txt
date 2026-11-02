@@ -1,0 +1,11 @@
+transformers==5.17.0
+torch==2.14.0
+torchvision==0.29.0
+pillow>=13,<14
+fastapi>=0.162,<0.163
+uvicorn>=0.54,<0.55
+python-multipart>=0.0.32,<0.1
+pypdfium2>=5.14,<6
+httpx==0.28.1
+markdown-it-py>=4,<5
+bleach>=6.2,<7

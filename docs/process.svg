@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1998" viewBox="0 0 1440 1998">
+<defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8" fill="none" stroke="#315e50"/></marker></defs>
+<rect width="1440" height="1998" fill="#fafcfb"/>
+<text x="40" y="38" font-family="Arial" font-size="22" fill="#204b3d">Атлас — UML-диаграмма последовательности</text>
+<rect x="10" y="65" width="200" height="44" rx="4" fill="#e4eee8" stroke="#8ba698"/>
+<text x="110" y="92" text-anchor="middle" font-family="Arial" font-size="14">Сотрудник</text>
+<line x1="110" y1="109" x2="110" y2="1963" stroke="#bdcec3" stroke-dasharray="5 5"/>
+<rect x="245" y="65" width="200" height="44" rx="4" fill="#e4eee8" stroke="#8ba698"/>
+<text x="345" y="92" text-anchor="middle" font-family="Arial" font-size="14">Веб-интерфейс</text>
+<line x1="345" y1="109" x2="345" y2="1963" stroke="#bdcec3" stroke-dasharray="5 5"/>
+<rect x="480" y="65" width="200" height="44" rx="4" fill="#e4eee8" stroke="#8ba698"/>
+<text x="580" y="92" text-anchor="middle" font-family="Arial" font-size="14">Сервер сравнения</text>
+<line x1="580" y1="109" x2="580" y2="1963" stroke="#bdcec3" stroke-dasharray="5 5"/>
+<rect x="715" y="65" width="200" height="44" rx="4" fill="#e4eee8" stroke="#8ba698"/>
+<text x="815" y="92" text-anchor="middle" font-family="Arial" font-size="14">Временные файлы</text>
+<line x1="815" y1="109" x2="815" y2="1963" stroke="#bdcec3" stroke-dasharray="5 5"/>
+<rect x="950" y="65" width="200" height="44" rx="4" fill="#e4eee8" stroke="#8ba698"/>
+<text x="1050" y="92" text-anchor="middle" font-family="Arial" font-size="14">Обработчик</text>
+<line x1="1050" y1="109" x2="1050" y2="1963" stroke="#bdcec3" stroke-dasharray="5 5"/>
+<rect x="1185" y="65" width="200" height="44" rx="4" fill="#e4eee8" stroke="#8ba698"/>
+<text x="1285" y="92" text-anchor="middle" font-family="Arial" font-size="14">Сервер моделей</text>
+<line x1="1285" y1="109" x2="1285" y2="1963" stroke="#bdcec3" stroke-dasharray="5 5"/>
+<rect x="315" y="706" width="765" height="242" fill="#f0f6f0" fill-opacity="0.6" stroke="#afc3b4"/>
+<text x="322" y="719" font-family="Arial" font-size="10" fill="#536c5c">loop Для каждой версии независимо</text>
+<rect x="1020" y="938" width="295" height="126" fill="#f0f6f0" fill-opacity="0.6" stroke="#afc3b4"/>
+<text x="1027" y="951" font-family="Arial" font-size="10" fill="#536c5c">opt Неоднозначные соответствия</text>
+<rect x="1020" y="1112" width="295" height="126" fill="#f0f6f0" fill-opacity="0.6" stroke="#afc3b4"/>
+<text x="1027" y="1125" font-family="Arial" font-size="10" fill="#536c5c">opt Изменённые контексты</text>
+<rect x="315" y="1344" width="295" height="126" fill="#f0f6f0" fill-opacity="0.6" stroke="#afc3b4"/>
+<text x="322" y="1357" font-family="Arial" font-size="10" fill="#536c5c">loop До завершения</text>
+<rect x="315" y="1808" width="295" height="68" fill="#f0f6f0" fill-opacity="0.6" stroke="#afc3b4"/>
+<text x="322" y="1821" font-family="Arial" font-size="10" fill="#536c5c">loop Пока открыт результат</text>
+<line x1="110" y1="168" x2="345" y2="168" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="227.5" y="160" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">1. Два документа, подписи, ФИО</text>
+<line x1="345" y1="226" x2="580" y2="226" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="462.5" y="218" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">2. POST comparisons</text>
+<line x1="580" y1="284" x2="815" y2="284" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="697.5" y="276" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">3. Сохранить оригиналы</text>
+<line x1="580" y1="342" x2="345" y2="342" stroke="#315e50" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="462.5" y="334" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">4. 202 и ID задачи</text>
+<line x1="580" y1="400" x2="1050" y2="400" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="815.0" y="392" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">5. Поставить задачу в очередь</text>
+<line x1="1050" y1="458" x2="815" y2="458" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="932.5" y="450" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">6. Получить документы</text>
+<path d="M1050,498 h65 v22 h-65" fill="none" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="1125" y="514" text-anchor="start" font-family="Arial" font-size="12" fill="#24483b">7. Структура, точный diff и группы</text>
+<line x1="1050" y1="574" x2="815" y2="574" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="932.5" y="566" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">8. Предварительный текстовый результат</text>
+<line x1="345" y1="632" x2="580" y2="632" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="462.5" y="624" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">9. Получить доступную ревизию</text>
+<line x1="580" y1="690" x2="345" y2="690" stroke="#315e50" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="462.5" y="682" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">10. Группы и тексты до готовности страниц</text>
+<path d="M1050,730 h65 v22 h-65" fill="none" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="1125" y="746" text-anchor="start" font-family="Arial" font-size="12" fill="#24483b">11. PDF через прогретый LibreOffice и координаты</text>
+<line x1="1050" y1="806" x2="815" y2="806" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="932.5" y="798" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">12. Новая ревизия с готовой версией</text>
+<line x1="345" y1="864" x2="580" y2="864" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="462.5" y="856" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">13. Запрос новой ревизии и preview</text>
+<line x1="580" y1="922" x2="345" y2="922" stroke="#315e50" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="462.5" y="914" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">14. Страницы готовой стороны</text>
+<line x1="1050" y1="980" x2="1285" y2="980" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="1167.5" y="972" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">15. Эмбеддинги фрагментов</text>
+<line x1="1285" y1="1038" x2="1050" y2="1038" stroke="#315e50" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="1167.5" y="1030" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">16. Векторы или ошибка</text>
+<path d="M1050,1078 h65 v22 h-65" fill="none" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="1125" y="1094" text-anchor="start" font-family="Arial" font-size="12" fill="#24483b">17. Таблицы и точный diff</text>
+<line x1="1050" y1="1154" x2="1285" y2="1154" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="1167.5" y="1146" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">18. Извлечение сущностей</text>
+<line x1="1285" y1="1212" x2="1050" y2="1212" stroke="#315e50" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="1167.5" y="1204" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">19. Сущности или ошибка</text>
+<path d="M1050,1252 h65 v22 h-65" fill="none" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="1125" y="1268" text-anchor="start" font-family="Arial" font-size="12" fill="#24483b">20. Классификация, подписи, полнота</text>
+<line x1="1050" y1="1328" x2="815" y2="1328" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="932.5" y="1320" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">21. Результат и страницы</text>
+<line x1="345" y1="1386" x2="580" y2="1386" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="462.5" y="1378" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">22. Состояние задачи</text>
+<line x1="580" y1="1444" x2="345" y2="1444" stroke="#315e50" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="462.5" y="1436" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">23. Этап и предупреждения</text>
+<line x1="345" y1="1502" x2="580" y2="1502" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="462.5" y="1494" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">24. Результат и PDF страниц</text>
+<line x1="580" y1="1560" x2="345" y2="1560" stroke="#315e50" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="462.5" y="1552" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">25. Различия и координаты</text>
+<line x1="345" y1="1618" x2="110" y2="1618" stroke="#315e50" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="227.5" y="1610" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">26. Две версии с подсветкой</text>
+<line x1="110" y1="1676" x2="345" y2="1676" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="227.5" y="1668" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">27. Скачать отчёт</text>
+<line x1="345" y1="1734" x2="580" y2="1734" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="462.5" y="1726" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">28. PDF, DOCX или JSON</text>
+<line x1="580" y1="1792" x2="345" y2="1792" stroke="#315e50" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="462.5" y="1784" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">29. Автономный файл</text>
+<line x1="345" y1="1850" x2="580" y2="1850" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="462.5" y="1842" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">30. Heartbeat</text>
+<line x1="580" y1="1908" x2="815" y2="1908" stroke="#315e50" marker-end="url(#arrow)"/>
+<text x="697.5" y="1900" text-anchor="middle" font-family="Arial" font-size="12" fill="#24483b">31. Удалить по кнопке или после простоя</text>
+</svg>

@@ -1,0 +1,16 @@
+{
+  "version": "0.3.0",
+  "python": "3.11.15",
+  "platform": "windows-x86_64",
+  "uv": "0.13.6",
+  "torch": "2.7.1",
+  "cuda_profile": "cu128",
+  "libreoffice_portable": "26.2.4",
+  "pdfjs": "5.4.296",
+  "seven_zip": "24.08",
+  "model_revisions": "config/models.json",
+  "dependency_locks": [
+    "requirements-comparison.lock",
+    "requirements-models.lock"
+  ]
+}

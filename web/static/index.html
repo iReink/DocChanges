@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Атлас — сравнение документов</title><link rel="stylesheet" href="/style.css?v=20261102-independent"></head>
+<body>
+<header class="app-header">
+<a class="brand" href="/"><span class="brand-mark">А</span>АТЛАС</a>
+<div id="headerDocument" class="header-document" hidden><h1 id="documentTitle">Сравнение документов</h1></div>
+<div id="resultHeading" class="result-heading" hidden><p id="resultTitle"></p><p id="resultMeta"></p></div>
+<div class="header-actions"><button id="newComparison" class="secondary new-comparison" hidden>Новое сравнение</button><div id="reportActions" class="report-actions" hidden><a id="pdfReport" class="primary" title="Скачать отчёт PDF">PDF ↓</a><a id="docxReport" class="secondary">DOCX ↓</a><a id="jsonReport" class="secondary">JSON ↓</a><button id="printReport" class="secondary">Печать</button></div><button id="settingsButton" class="secondary icon-button" aria-label="Настройки" title="Настройки подключения"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m9.5 3-.6 2.1-1.6.9-2.1-.5-2.5 4.3 1.5 1.6v1.8l-1.5 1.6 2.5 4.3 2.1-.5 1.6.9.6 2.1h5l.6-2.1 1.6-.9 2.1.5 2.5-4.3-1.5-1.6v-1.8l1.5-1.6-2.5-4.3-2.1.5-1.6-.9-.6-2.1z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+</header>
+<dialog id="connectionPanel" class="settings-dialog" aria-labelledby="connectionTitle"><div class="dialog-heading"><h2 id="connectionTitle">Настройки подключения</h2><button id="closeSettings" class="secondary icon-button" aria-label="Закрыть настройки">×</button></div><p class="connection"><span id="connectionDot" class="dot"></span><span id="connectionText" role="status">Проверка подключения</span></p><p id="connectionInfo"></p><form id="connectForm"><label for="apiAddress">Адрес API</label><div class="inline"><input id="apiAddress" placeholder="http://192.168.1.20:8000" required><button class="primary">Подключить</button></div></form><p id="connectionError" class="notice" role="alert" hidden></p></dialog>
+<main>
+<div id="notice" class="notice" role="status" hidden></div>
+<section id="uploadView">
+<div class="intro"><h1>Что изменилось в документе?</h1><p>Сопоставьте согласованную и полученную редакции.</p></div>
+<form id="uploadForm">
+<div class="file-grid">
+<section class="file-card"><div class="card-top"><span class="step">01</span><span>ИСХОДНЫЙ ДОКУМЕНТ</span></div><h2>Согласованная версия</h2><label class="dropzone" id="oldDrop"><span class="file-icon">↥</span><strong id="oldName">Выберите документ</strong><span id="oldMeta">или перетащите его сюда</span><input type="file" id="oldFile" accept=".doc,.docx,.pdf" required></label><div class="formats">DOC · DOCX · PDF <span>до 50 МБ</span></div><details><summary>Добавить электронные подписи</summary><input type="file" id="oldSignatures" multiple><p>Необязательно. Отдельные файлы CMS/CAdES.</p></details></section>
+<section class="file-card"><div class="card-top"><span class="step">02</span><span>ПОЛУЧЕННЫЙ ДОКУМЕНТ</span></div><h2>Новая версия</h2><label class="dropzone" id="newDrop"><span class="file-icon">↥</span><strong id="newName">Выберите документ</strong><span id="newMeta">или перетащите его сюда</span><input type="file" id="newFile" accept=".doc,.docx,.pdf" required></label><div class="formats">DOC · DOCX · PDF <span>до 50 МБ</span></div><details><summary>Добавить электронные подписи</summary><input type="file" id="newSignatures" multiple><p>Необязательно. Отдельные файлы CMS/CAdES.</p></details></section>
+</div>
+<div class="submit-panel"><div class="employee"><label for="employee">ФИО сотрудника для отчёта</label><input id="employee" placeholder="Иванов Иван Иванович" maxlength="250"></div><button class="primary compare-button" id="compareButton" disabled>Сравнить документы <span>↗</span></button></div>
+</form>
+</section>
+<section id="progressView" class="progress-panel" hidden><div class="spinner"></div><div class="eyebrow">СРАВНЕНИЕ ДОКУМЕНТОВ</div><h1 id="progressStage">В очереди</h1><p id="progressMeta">Задача принята</p><p>Находим соответствующие фрагменты и проверяем изменения.</p><button id="cancelButton" class="secondary">Отменить и удалить файлы</button></section>
+<section id="resultView" hidden>
+<div id="backgroundStatus" class="notice" role="status" hidden></div>
+<div class="tabs"><button class="tab active" data-tab="changes">Изменения <span id="changeCount">0</span></button><button class="tab" data-tab="signatures">Электронные подписи</button><button class="tab" data-tab="warnings">Полнота проверки <span id="warningCount"></span></button></div>
+<div id="changesTab"><div class="workspace"><aside><select id="categoryFilter" aria-label="Тип изменений"><option value="all">Все изменения</option></select><div id="changeList" class="change-list"></div></aside><div class="document-pair"><div class="document"><div class="document-toolbar"><strong id="oldDocumentName"></strong><div><button data-side="old" data-direction="-1" aria-label="Предыдущая страница">‹</button><span id="oldPageLabel"></span><button data-side="old" data-direction="1" aria-label="Следующая страница">›</button></div></div><div class="page-scroll document-stream" id="oldStream" tabindex="0" role="region" aria-label="Согласованная версия: лента страниц"></div></div><div class="document"><div class="document-toolbar"><strong id="newDocumentName"></strong><div><button data-side="new" data-direction="-1" aria-label="Предыдущая страница">‹</button><span id="newPageLabel"></span><button data-side="new" data-direction="1" aria-label="Следующая страница">›</button></div></div><div class="page-scroll document-stream" id="newStream" tabindex="0" role="region" aria-label="Полученная версия: лента страниц"></div></div></div></div></div>
+<div id="signaturesTab" class="panel" hidden></div><div id="warningsTab" class="panel" hidden></div>
+</section>
+</main><footer><span>АТЛАС / Сравнение документов</span><span>Локальная обработка · Версия 0.3.0</span></footer><script type="module" src="/app.js?v=20261102-independent"></script>
+</body></html>

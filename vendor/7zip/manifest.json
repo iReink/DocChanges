@@ -1,0 +1,8 @@
+{
+  "sha256": {
+    "7z.dll": "e79ddfb6319dbf9bac6382035d23597dad979db5e71a605d81a61ee817c1e812",
+    "7z.exe": "707f415d7d581edd9bce99a0429ad4629d3be0316c329e8b9ebd576f7ab50b71"
+  },
+  "version": "24.08",
+  "source": "https://www.7-zip.org/"
+}

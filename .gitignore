@@ -1,0 +1,27 @@
+runtime/
+models/
+temp/
+logs/
+work/
+__pycache__/
+.pytest_cache/
+*.pyc
+config/settings.local.json
+Тестовые файлы/
+ocr_lab/results/
+ocr_lab/uploads/
+ocr_lab/.venv/
+vendor/pdfjs/
+docs/*.jpg
+docs/*.png
+mermaid-diagram.png
+.env
+.env.*
+!.env.example
+*.log
+*.part
+.DS_Store
+.idea/
+.vscode/
+dist/
+build/

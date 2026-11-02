@@ -1,0 +1,48 @@
+sequenceDiagram
+    actor User as Сотрудник
+    participant Web as Веб-интерфейс
+    participant API as Сервер сравнения
+    participant Temp as Временные файлы
+    participant Worker as Обработчик
+    participant Models as Сервер моделей
+    User->>Web: Два документа, подписи, ФИО
+    Web->>API: POST comparisons
+    API->>Temp: Сохранить оригиналы
+    API-->>Web: 202 и ID задачи
+    API->>Worker: Поставить задачу в очередь
+    Worker->>Temp: Получить документы
+    Worker->>Worker: Структура, точный diff и группы
+    Worker->>Temp: Предварительный текстовый результат
+    Web->>API: Получить доступную ревизию
+    API-->>Web: Группы и тексты до готовности страниц
+    loop Для каждой версии независимо
+        Worker->>Worker: PDF через прогретый LibreOffice и координаты
+        Worker->>Temp: Новая ревизия с готовой версией
+        Web->>API: Запрос новой ревизии и preview
+        API-->>Web: Страницы готовой стороны
+    end
+    opt Неоднозначные соответствия
+        Worker->>Models: Эмбеддинги фрагментов
+        Models-->>Worker: Векторы или ошибка
+    end
+    Worker->>Worker: Таблицы и точный diff
+    opt Изменённые контексты
+        Worker->>Models: Извлечение сущностей
+        Models-->>Worker: Сущности или ошибка
+    end
+    Worker->>Worker: Классификация, подписи, полнота
+    Worker->>Temp: Результат и страницы
+    loop До завершения
+        Web->>API: Состояние задачи
+        API-->>Web: Этап и предупреждения
+    end
+    Web->>API: Результат и PDF страниц
+    API-->>Web: Различия и координаты
+    Web-->>User: Две версии с подсветкой
+    User->>Web: Скачать отчёт
+    Web->>API: PDF, DOCX или JSON
+    API-->>Web: Автономный файл
+    loop Пока открыт результат
+        Web->>API: Heartbeat
+    end
+    API->>Temp: Удалить по кнопке или после простоя
