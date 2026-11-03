@@ -1,5 +1,6 @@
 import { extractDocumentInfo, documentInfoFromPDF } from '/document-info.js?v=20261102-independent';
 import { DocumentViewer } from '/document-viewer.js?v=20261102-independent';
+import { normalURL as parseAPIAddress } from '/api-address.js?v=20261103-proxy';
 import * as pdfjs from '/vendor/pdfjs/pdf.mjs';
 pdfjs.GlobalWorkerOptions.workerSrc='/vendor/pdfjs/pdf.worker.mjs';
 const $=id=>document.getElementById(id);
@@ -24,13 +25,13 @@ function documentHeading(){
  $('documentTitle').textContent=label;$('documentTitle').title=label;
 }
 
-function normalURL(value){value=value.trim();if(!/^https?:\/\//i.test(value))value='http://'+value;if(!/:[0-9]+\/?$/.test(value)&&!value.match(/:\/\/[^/]+:[0-9]+/))value+=':8000';return new URL(value).origin;}
+function normalURL(value){return parseAPIAddress(value,location.origin);}
 async function request(path,options={}){const response=await fetch(api+path,{cache:'no-store',...options});if(!response.ok){let msg;try{const body=await response.json();msg=typeof body.detail==='string'?body.detail:JSON.stringify(body.detail);}catch{msg='Ошибка HTTP '+response.status;}throw Object.assign(new Error(msg),{status:response.status});}return response.json();}
 async function connect(value){
  try{const nextAPI=normalURL(value),changed=api&&api!==nextAPI;api=nextAPI;$('apiAddress').value=api;$('connectionError').hidden=true;$('connectionText').textContent='Проверка подключения';
  const health=await request('/health',{signal:AbortSignal.timeout(4000)});if(health.service!=='atlas-comparison')throw new Error('По этому адресу работает другое приложение.');
  const caps=await request('/api/v1/capabilities',{signal:AbortSignal.timeout(6000)});
- connected=true;localStorage.setItem('atlas-api',api);$('connectionDot').classList.add('online');$('connectionText').textContent='Сервер подключён';$('compareButton').disabled=false;if($('connectionPanel').open)$('connectionPanel').close();
+ connected=true;localStorage.setItem('atlas-api',api);localStorage.setItem('atlas-api-routing','proxy-v1');$('connectionDot').classList.add('online');$('connectionText').textContent='Сервер подключён';$('compareButton').disabled=false;if($('connectionPanel').open)$('connectionPanel').close();
  const converterInfo=!caps.converter?'Конвертер Word отсутствует. ':!health.converter?'Сервер запущен без ускоренного конвертера. Перезапустите сервер сравнения. ':health.converter.ready?'Ускоренный конвертер готов. ':health.converter.state==='warming'?'Конвертер прогревается. ':'Ускоренный конвертер недоступен. Перезапустите сервер сравнения. ';
  $('connectionInfo').textContent=converterInfo+(caps.models.available?'Сервер моделей доступен.':'Сервер моделей недоступен — сравнение продолжится кодом.');notify();
  if(changed)await clearLocalResult();
@@ -38,6 +39,7 @@ async function connect(value){
  }catch(error){connected=false;$('connectionDot').classList.remove('online');$('connectionText').textContent='Нет подключения';$('compareButton').disabled=true;$('connectionError').textContent='Не удалось подключиться: '+error.message+' Проверьте адрес, порт и доступ к локальной сети.';$('connectionError').hidden=false;openSettings();}
 }
 $('settingsButton').onclick=openSettings;
+$('useWebAPI').onclick=()=>{clearInterval(poller);connect('/comparison-api');};
 $('closeSettings').onclick=()=>$('connectionPanel').close();
 $('connectionPanel').addEventListener('click',event=>{const box=$('connectionPanel').getBoundingClientRect();if(event.target===$('connectionPanel')&&(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom))$('connectionPanel').close();});
 $('connectForm').onsubmit=e=>{e.preventDefault();clearInterval(poller);connect($('apiAddress').value);};
@@ -127,4 +129,8 @@ function renderWarnings(){const root=$('warningsTab');root.replaceChildren();con
  const p=document.createElement('p');p.textContent='Страницы Word относятся к отображению комплекса. Абзацы PDF восстановлены по геометрии. Шрифты, размеры, цвет и изображения не входят в объём сравнения.';root.append(p);
  const areas={text:'Текст',tables:'Таблицы',formatting:'Абзацы и переносы',signatures:'Подписи',navigation:'Привязка к страницам'};const values={unavailable:'Текст недоступен без OCR',not_performed:'Не выполнено',pending:'Подготавливается',complete:'Проверено',partial:'Есть ограничения',reconstructed:'Структура восстановлена автоматически; требует внимания',paragraphs_and_breaks:'Проверены границы абзацев и явные переносы',not_applicable:'Не проверяется для пары с PDF',integrity_only:'Только доступная проверка соответствия файлу',not_provided:'Подписи не предоставлены или не обнаружены',not_checked:'Не проверено'};for(const side of ['old','new']){const heading=document.createElement('h2');heading.textContent=side==='old'?'Согласованная версия':'Полученная версия';root.append(heading);const list=document.createElement('ul');for(const [area,value]of Object.entries(result.documents[side].coverage)){const li=document.createElement('li');li.textContent=(areas[area]||area)+': '+(values[value]||value);list.append(li);}root.append(list);}}
 let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(result)for(const side of ['old','new'])viewers[side].refreshLayout();},250);});
-try{const config=await fetch('/config.json').then(r=>r.json());const local=localStorage.getItem('atlas-api');const hostname=location.hostname==='[::1]'?'localhost':location.hostname;await connect(local||config.api_url||`http://${hostname}:${config.comparison_port}`);}catch(error){$('connectionError').textContent=error.message;$('connectionError').hidden=false;openSettings();}
+try{const config=await fetch('/config.json',{cache:'no-store'}).then(r=>r.json());const local=localStorage.getItem('atlas-api');
+ // Migrate old automatic/direct selections once; keep subsequent manual choices.
+ const migrated=localStorage.getItem('atlas-api-routing')==='proxy-v1';
+ await connect((migrated&&local)||config.api_url||'/comparison-api');
+}catch(error){$('connectionError').textContent=error.message;$('connectionError').hidden=false;openSettings();}

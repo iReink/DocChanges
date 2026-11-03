@@ -31,5 +31,5 @@ try{
     $taskJson=$taskLocal | ConvertTo-Json
     [IO.File]::WriteAllText($taskPath,$taskJson,[Text.UTF8Encoding]::new($false))
     Write-Host 'Настройки сохранены. Перезапустите запущенные компоненты: stop_all.bat, затем нужные start_*.bat.'
-    Write-Host 'Ранее сохранённый адрес в браузере имеет приоритет: измените его кнопкой с шестерёнкой.'
+    Write-Host 'Браузер подключается через веб-интерфейс. При необходимости нажмите в шестерёнке «Подключаться через веб-интерфейс».'
 }catch{Write-Host ('Ошибка: '+$_.Exception.Message) -ForegroundColor Red;exit 1}
